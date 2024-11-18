@@ -75,21 +75,24 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## 2. Command-Line Instructions
 
-### **2.1 Initialize Next.js Project**
-[X]
+[X]### **2.1 Initialize Next.js Project**
+
 ```bash
 # Create a new Next.js app
 npx create-next-app@latest . --typescript
 
 ```
 
-### **2.2 Install Required Libraries**
+[X] ### **2.2 Install Required Libraries**
 ```bash
 # Install core dependencies
-npm install axios zod @reduxjs/toolkit react-redux @shadcn/ui tailwindcss postcss autoprefixer next-seo @prisma/client googleapis stripe
+npm install axios zod @reduxjs/toolkit react-redux @shadcn/ui tailwindcss postcss autoprefixer next-seo @prisma/client googleapis
 
 # Install database and serverless tools
 npm install --save-dev prisma vercel @vercel/node
+
+# not installed 
+npm install stripe
 ```
 
 ### **2.3 Configure TailwindCSS**
