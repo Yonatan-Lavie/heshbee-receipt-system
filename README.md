@@ -38,6 +38,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 
+
 ---
 # Step-by-Step Guide to Set Up HashBee Project
 
@@ -48,19 +49,19 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - [-] Add a `.gitignore` file for `Node.js` and `Next.js`
 
 ### **1.2 Google Drive Client Setup**
-- [] **Client Account Authentication**:
-  - [] The client will need to authenticate their Google account via OAuth2
-  - [] Obtain client consent to access their Google Drive
-- [] Configure a "Sign in with Google" flow for Drive access:
+- [X] **Client Account Authentication**:
+  - [X] The client will need to authenticate their Google account via OAuth2
+  - [X] Obtain client consent to access their Google Drive
+- [X] Configure a "Sign in with Google" flow for Drive access:
   1. Go to [Google Cloud Console](https://console.cloud.google.com/)
   2. Create a new project or use an existing one
   3. Enable the **Google Drive API** and **Google OAuth Consent Screen**
   4. Set up OAuth2 credentials for a web application
 
 ### **1.3 Telegram Bot Setup**
-- [] Create a new bot using BotFather on Telegram
-- [] Obtain the bot token
-- [] Set up a webhook (configured later)
+- [X] Create a new bot using BotFather on Telegram
+- [X] Obtain the bot token
+- [X] Set up a webhook (configured later)
 
 ### **1.4 Stripe Integration**
 - [] Create a Stripe account (if not already created)
@@ -68,19 +69,18 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - [] Create a subscription plan with a trial period
 
 ### **1.5 Vercel Hosting**
-- [] Log in to [Vercel](https://vercel.com/)
-- [] Connect the GitHub repository
+- [X] Log in to [Vercel](https://vercel.com/)
+- [X] Connect the GitHub repository
 - [] Set up project environment variables (to be added after backend configuration)
 
 ## 2. Command-Line Instructions
 
 ### **2.1 Initialize Next.js Project**
+[X]
 ```bash
 # Create a new Next.js app
-npx create-next-app@latest hashbee-receipt-system --typescript
+npx create-next-app@latest . --typescript
 
-# Navigate to the project directory
-cd hashbee-receipt-system
 ```
 
 ### **2.2 Install Required Libraries**
