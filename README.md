@@ -95,10 +95,13 @@ npm install --save-dev prisma vercel @vercel/node
 npm install stripe
 ```
 
-### **2.3 Configure TailwindCSS**
+[X] ### **2.3 Configure TailwindCSS and ShanCN**
 ```bash
 # Initialize TailwindCSS
 npx tailwindcss init -p
+
+# Initialize ShanCN
+npx shadcn@latest init
 ```
 - [] Update `tailwind.config.js`:
   ```javascript
