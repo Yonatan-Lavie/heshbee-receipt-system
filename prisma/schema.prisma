@@ -1,0 +1,131 @@
+// prisma/schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String       @id @default(cuid())
+  email         String       @unique
+  name          String?
+  password      String?      // Hashed password for email/password auth
+  authProvider  String?      // "google", "facebook", etc.
+  authProviderId String?     // External provider's user ID
+  isActive      Boolean      @default(true)
+  
+  // Relations
+  subscription  Subscription?
+  receipts      Receipt[]
+  settings      Settings?
+  driveTokens   DriveToken?
+  
+  // Timestamps
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  
+  // Indexes
+  @@index([email])
+  @@index([authProvider, authProviderId])
+}
+
+model Receipt {
+  id           String    @id @default(cuid())
+  userId       String
+  fileUrl      String    // Google Drive file URL
+  driveId      String    // Google Drive file ID
+  fileName     String
+  fileSize     Int
+  mimeType     String
+  
+  // OCR and Processing Data
+  rawText      String?   // Extracted text from OCR
+  metadata     Json      // Processed data from Claude
+  status       String    @default("pending") // pending, processing, completed, failed
+  
+  // Categorization
+  category     String?
+  amount       Float?
+  currency     String    @default("USD")
+  date         DateTime?
+  
+  // Relations
+  user         User      @relation(fields: [userId], references: [id])
+  
+  // Timestamps
+  uploadedAt   DateTime  @default(now())
+  processedAt  DateTime?
+  
+  // Indexes
+  @@index([userId, status])
+  @@index([userId, date])
+}
+
+model Subscription {
+  id              String    @id @default(cuid())
+  userId          String    @unique
+  planType        String    // trial, pro
+  status          String    // active, cancelled, expired
+  
+  // Stripe Data
+  stripeCustomerId String?
+  stripeSubscriptionId String?
+  stripePriceId   String?
+  
+  // Dates
+  trialStart      DateTime?
+  trialEnd        DateTime?
+  currentPeriodStart DateTime
+  currentPeriodEnd   DateTime
+  canceledAt      DateTime?
+  
+  // Relations
+  user            User     @relation(fields: [userId], references: [id])
+  
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  // Indexes
+  @@index([status])
+  @@index([stripeCustomerId])
+}
+
+model Settings {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  
+  // Report Settings
+  emailReports    Boolean  @default(true)
+  reportFrequency String   @default("MONTHLY") // DAILY, WEEKLY, MONTHLY
+  reportDay       Int      @default(1)         // Day of month for monthly reports
+  reportEmail     String?
+  
+  // Notification Preferences
+  emailNotifications Boolean @default(true)
+  telegramNotifications Boolean @default(true)
+  
+  // Relations
+  user            User     @relation(fields: [userId], references: [id])
+  
+  // Timestamps
+  updatedAt       DateTime @updatedAt
+}
+
+model DriveToken {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  accessToken     String
+  refreshToken    String
+  expiresAt       DateTime
+  
+  // Relations
+  user            User     @relation(fields: [userId], references: [id])
+  
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

@@ -103,7 +103,7 @@ npx tailwindcss init -p
 # Initialize ShanCN
 npx shadcn@latest init
 ```
-- [] Update `tailwind.config.js`:
+- [X] Update `tailwind.config.js`:
   ```javascript
   module.exports = {
     content: [
@@ -118,11 +118,27 @@ npx shadcn@latest init
   ```
 
 ### **2.4 Set Up Prisma**
+[X] Step 1: Get the connection string from Supabase project settings - [Supabase project settings](https://supabase.com/dashboard/project/yszisefgwedfnsokvjou/settings/database)
+
+[X] Step 2: install prisma
+```bash
+npm install prisma typescript ts-node @types/node --save-dev
+```
+[X] step 3: add env variables to .env file
+```env
+DATABASE_URL="postgres://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:5432/postgres"
+```
+[X] Configuring the project
 ```bash
 # Initialize Prisma
 npx prisma init
 
 # Update schema.prisma to include tables for Users, Receipts, Subscriptions, and Settings
+```
+[X] add tables using schema.prisma file
+[X] apply migrations
+```bash
+npx prisma migrate dev --name init
 ```
 
 ### **2.5 Set Up CI/CD**
