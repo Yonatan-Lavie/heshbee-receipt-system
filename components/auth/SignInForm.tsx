@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from "react"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 
 import { Button } from "@/components/ui/button"
@@ -17,16 +17,16 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/icons"
 
-export function SignInForm() {
+interface SignInFormProps {
+  redirectUrl?: string
+}
+
+export function SignInForm({ redirectUrl = '/' }: SignInFormProps) {
   const router = useRouter()
-  const searchParams = useSearchParams()
   const supabase = createClientComponentClient()
   
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [isGoogleLoading, setIsGoogleLoading] = React.useState<boolean>(false)
-
-  // Get the intended destination from the URL search parameters
-  const redirectUrl = searchParams.get('redirectUrl') || '/'
 
   async function onSubmit(event: React.FormEvent) {
     event.preventDefault()
