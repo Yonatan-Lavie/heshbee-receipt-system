@@ -41,7 +41,7 @@ export function Navbar() {
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0">
             {/* Add your logo or site name here */}
-            <h1 className="text-xl font-bold">Your App</h1>
+            <h1 className="text-xl font-bold">HashBee</h1>
           </div>
           
           <div className="flex items-center gap-4">

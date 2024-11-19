@@ -1,15 +1,23 @@
-import { Navbar } from "@/components/layout/Navbar"
+import { PricingPlans } from "@/components/pricing/pricing-plans"
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <main>
-      <Navbar />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-4xl font-bold text-center">
-          Welcome to Your App
-        </h1>
-        {/* Add your home page content here */}
-      </div>
-    </main>
+    <div className="flex flex-col min-h-screen">
+      <main className="flex-1">
+        <section className="w-full py-12 md:py-24 lg:py-32">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center space-y-4 text-center">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                Simplify Your Receipt Management
+              </h1>
+              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
+                Upload receipts via Telegram, we'll organize them and send reports to your accountant automatically.
+              </p>
+            </div>
+          </div>
+        </section>
+        <PricingPlans />
+      </main>
+    </div>
   )
 }
