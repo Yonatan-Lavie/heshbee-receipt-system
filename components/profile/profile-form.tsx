@@ -28,7 +28,9 @@ const profileFormSchema = z.object({
 type ProfileFormValues = z.infer<typeof profileFormSchema>
 
 interface ProfileFormProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   user: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   profile: any
 }
 
@@ -60,7 +62,7 @@ export function ProfileForm({ user, profile }: ProfileFormProps) {
       toast.success('Profile updated successfully')
       router.refresh()
     } catch (error) {
-      toast.error('Error updating profile')
+      toast.error(`Error updating profile: ${error}`)
     }
   }
 

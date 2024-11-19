@@ -11,7 +11,7 @@ export default function LandingPage() {
                 Simplify Your Receipt Management
               </h1>
               <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-                Upload receipts via Telegram, we'll organize them and send reports to your accountant automatically.
+                Upload receipts via Telegram, we&apos;ll organize them and send reports to your accountant automatically.
               </p>
             </div>
           </div>

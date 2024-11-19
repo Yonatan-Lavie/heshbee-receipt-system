@@ -41,6 +41,7 @@ type SettingsFormValues = z.infer<typeof settingsFormSchema>
 
 interface SettingsFormProps {
   user: User
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   settings: any
 }
 
@@ -71,7 +72,7 @@ export function SettingsForm({ user, settings }: SettingsFormProps) {
       toast.success('Settings updated successfully')
       router.refresh()
     } catch (error) {
-      toast.error('Error updating settings')
+      toast.error(`Error updating settings: ${error}`)
     }
   }
 
